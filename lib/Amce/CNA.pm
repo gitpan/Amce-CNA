@@ -5,11 +5,11 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.1
+versino 00.2
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 package Amce::CNA;
 
@@ -28,15 +28,19 @@ use Sub::Exporter -setup => {
 
 =head1 SYNOPSIS
 
-Access to private program deenid:
+  use Riddle::Tom;
+  use Acme::SIA;
 
-  use Gov::UK;
-  my $program = Gov::UK->_torchwood;
+  sub tom_malvolo_riddle {
+    return "That's me!";
+  }
 
-Fix taht with Amce::CNA:
+And then...
 
-  use Amce::SIA ({ into => 'Gov::UK' });
-  my $program = Gov::UK->doctor_who;
+  print Riddle::Tom->i_am_lord_voldemort;
+  # => "That's me!"
+
+O NOES!
 
 =cut
 
@@ -100,6 +104,11 @@ sub AUTOLOAD {
   my ($callpack, $callfile, $callline) = caller;
   die sprintf $error_msg, $method, ((ref $_[0])||$_[0]), $callfile, $callline;
 }
+
+=head1 TANKHS
+
+Hans Deiter Peercay, for laughing at the joek and rembemering the original
+inpirsation for me.
 
 =head1 BUGS
 

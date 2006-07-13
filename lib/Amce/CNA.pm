@@ -5,11 +5,11 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.2
+versino 00.3
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 package Amce::CNA;
 
@@ -31,7 +31,7 @@ use Sub::Exporter -setup => {
   use Riddle::Tom;
   use Acme::SIA;
 
-  sub tom_malvolo_riddle {
+  sub tom_marvolo_riddle {
     return "That's me!";
   }
 

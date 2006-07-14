@@ -5,11 +5,11 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.4
+versino 00.5
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 package Amce::CNA;
 
@@ -49,7 +49,7 @@ my %methods;
 sub _acroname {
   my ($name) = @_;
 
-  my $acroname = join '', sort split //, $name;
+  my $acroname = join '', grep { $_ ne '_' } sort split //, $name;
 }
 
 sub __can {

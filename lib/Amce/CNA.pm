@@ -1,3 +1,5 @@
+use strict;
+use warnings;
 
 =head1 NAME
 
@@ -5,16 +7,13 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.5
+versino 00.61
 
 =cut
 
-our $VERSION = '0.05';
-
 package Amce::CNA;
 
-use strict;
-use warnings;
+our $VERSION = '0.061';
 
 use Class::ISA;
 
@@ -28,8 +27,8 @@ use Sub::Exporter -setup => {
 
 =head1 SYNOPSIS
 
-  use Riddle::Tom;
-  use Acme::CNA;
+  package Riddle::Tom;
+  use Amce::CNA;
 
   sub tom_marvolo_riddle {
     return "That's me!";
@@ -42,6 +41,10 @@ And then...
 
 O NOES!
 
+=head1 DESCRIPTION
+
+This modlue makes it eaiser for dislexics to wriet workign Perl.
+
 =cut
 
 my %methods;
@@ -49,7 +52,7 @@ my %methods;
 sub _acroname {
   my ($name) = @_;
 
-  my $acroname = join '', grep { $_ ne '_' } sort split //, $name;
+  my $acroname = join q{}, grep { $_ ne '_' } sort split //, $name;
 }
 
 sub __can {
@@ -74,8 +77,10 @@ sub _populate_methods {
 
   my $return = {};
 
-  no strict 'refs';
-  my $stash = \%{"$pkg\::"};
+  my $stash = do { ## no critic (ConditionalDeclarations)
+    no strict 'refs'; ## no critic (NoStrict)
+    \%{"$pkg\::"};
+  };
 
   for my $name (keys %$stash) {
     next if $name eq uc $name;
@@ -92,16 +97,17 @@ my $error_msg = qq{Can\'t locate object method "%s" via package "%s" } .
                 qq{at %s line %d.\n};
 
 use vars qw($AUTOLOAD);
-sub AUTOLOAD {
+sub AUTOLOAD { ## no critic Autoload
   my ($class, $method) = $AUTOLOAD =~ /^(.+)::([^:]+)$/;
 
   if (my $code = __can($class, $method)) {
     return $code->(@_);
   }
 
-  die "AUTOLOAD not called as method" unless @_ >= 1;
+  Carp::croak "AUTOLOAD not called as method" unless @_ >= 1;
 
   my ($callpack, $callfile, $callline) = caller;
+  ## no critic Carp
   die sprintf $error_msg, $method, ((ref $_[0])||$_[0]), $callfile, $callline;
 }
 
@@ -121,6 +127,10 @@ ueQit ysib.lpos
 =item L<Symbol::Approx::Sub>
 
 =back
+
+=head1 AUTHOR
+
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT
 

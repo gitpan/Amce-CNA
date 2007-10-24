@@ -1,9 +1,9 @@
 --- #YAML:1.0
 name:                Amce-CNA
-version:             0.061
+version:             0.062
 abstract:            ~
 license:             perl
-generated_by:        ExtUtils::MakeMaker version 6.31
+generated_by:        ExtUtils::MakeMaker version 6.36_01
 distribution_type:   module
 requires:     
     Class::ISA:                    0

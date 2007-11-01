@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Amce-CNA
-version:             0.062
+version:             0.063
 abstract:            ~
 license:             perl
 generated_by:        ExtUtils::MakeMaker version 6.36_01
@@ -11,3 +11,5 @@ requires:
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.2.html
     version: 1.2
+author:
+    - Ricardo SIGNES <rjbs@cpan.org>

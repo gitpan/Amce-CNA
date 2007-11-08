@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:                Amce-CNA
-version:             0.063
-abstract:            ~
+version:             0.064
+abstract:            a moer tolernat verison of mehtod location
 license:             perl
 generated_by:        ExtUtils::MakeMaker version 6.36_01
 distribution_type:   module

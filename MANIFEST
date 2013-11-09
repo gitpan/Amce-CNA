@@ -1,11 +1,13 @@
 Changes
-lib/Amce/CNA.pm
-Makefile.PL
 LICENSE
-MANIFEST			This list of files
+MANIFEST
+META.json
+META.yml
+Makefile.PL
 README
+dist.ini
+lib/Amce/CNA.pm
+t/000-report-versions-tiny.t
 t/basic.t
-t/pod-coverage.t
-t/pod.t
-t/perl-critic.t
-META.yml                                 Module meta-data (added by MakeMaker)
+xt/release/changes_has_content.t
+xt/release/pod-syntax.t

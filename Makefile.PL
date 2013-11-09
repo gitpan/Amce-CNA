@@ -1,24 +1,61 @@
+
 use strict;
-use ExtUtils::MakeMaker;
+use warnings;
 
-use 5.006;
 
-WriteMakefile(
-  NAME          => 'Amce::CNA',
-  VERSION_FROM  => 'lib/Amce/CNA.pm',
-  ABSTRACT_FROM => 'lib/Amce/CNA.pm',
-  AUTHOR        => 'Ricardo SIGNES <rjbs@cpan.org>',
-  (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
-  (eval { ExtUtils::MakeMaker->VERSION(6.46) }
-    ? (META_MERGE => {
-        resources => {
-          Repository => 'http://github.com/rjbs/amce-cna'
-        }
-      })
-    : ()
-  ),
-  PREREQ_PM     => {
-    'Class::ISA'    => 0,
-    'Sub::Exporter' => 0.960,
+
+use ExtUtils::MakeMaker 6.30;
+
+
+
+my %WriteMakefileArgs = (
+  "ABSTRACT" => "a moer tolernat verison of mehtod location",
+  "AUTHOR" => "Ricardo SIGNES <rjbs\@cpan.org>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
+  "DISTNAME" => "Amce-CNA",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Amce::CNA",
+  "PREREQ_PM" => {
+    "Class::ISA" => 0,
+    "Sub::Exporter" => 0,
+    "strict" => 0,
+    "vars" => 0,
+    "warnings" => 0
+  },
+  "TEST_REQUIRES" => {
+    "Test::More" => "0.96"
+  },
+  "VERSION" => "0.066",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
 );
+
+
+my %FallbackPrereqs = (
+  "Class::ISA" => 0,
+  "Sub::Exporter" => 0,
+  "Test::More" => "0.96",
+  "strict" => 0,
+  "vars" => 0,
+  "warnings" => 0
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+
